@@ -1,0 +1,28 @@
+# Configuration for Cog ⚙️
+# Reference: https://cog.run/yaml
+
+build:
+  gpu: true
+  cuda: "12.4"
+  python_version: "3.11"
+  system_packages:
+    - "libgl1-mesa-glx"
+    - "libsm6"
+    - "libxext6"
+    - "ffmpeg"
+  python_packages:
+    - "torch==2.4"
+    - "torchvision"
+    - "git+https://github.com/huggingface/diffusers.git@c96bfa5c80eca798d555a79a491043c311d0f608"
+    - "transformers==4.46.3"
+    - "accelerate==1.1.1"
+    - "sentencepiece==0.2.0"
+    - "imageio==2.36.1"
+    - "imageio-ffmpeg==0.5.1"
+    - "ninja"
+    - "https://github.com/Dao-AILab/flash-attention/releases/download/v2.7.0.post2/flash_attn-2.7.0.post2+cu12torch2.4cxx11abiFALSE-cp311-cp311-linux_x86_64.whl"
+
+  run:
+    - curl -o /usr/local/bin/pget -L "https://github.com/replicate/pget/releases/latest/download/pget_$(uname -s)_$(uname -m)" && chmod +x /usr/local/bin/pget
+   
+predict: "predict.py:Predictor"
